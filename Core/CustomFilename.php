@@ -14,7 +14,7 @@ final class CustomFilename implements Filename {
 
 	public function path() {
 		return sprintf(
-			'%s::%s',
+			'%s__%s',
 			str_replace(
 				['\\'],
 				'_',

@@ -13,9 +13,17 @@ require __DIR__ . '/../bootstrap.php';
 class CustomFilenameTest extends Tester\TestCase {
 	public function testNamespacesToOldStyle() {
 		Assert::same(
-			'Klapuch_Snappie_Unit_CustomFilenameTest::someMethod',
+			'Klapuch_Snappie_Unit_CustomFilenameTest__someMethod',
 			(new Snappie\CustomFilename($this, 'someMethod'))->path()
 		);
+	}
+
+	public function testFilenameSupportedByAllFilesystems() {
+		Assert::noError(function() {
+			$filename = (new Snappie\CustomFilename($this, 'someMethod'))->path();
+			touch($filename);
+			unlink($filename);
+		});
 	}
 }
 (new CustomFilenameTest)->run();
