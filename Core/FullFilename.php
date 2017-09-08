@@ -11,8 +11,10 @@ final class FullFilename implements Filename {
 	}
 
 	public function path() {
-		return $this->snapshots->getPathname()
-			. DIRECTORY_SEPARATOR
-			. $this->origin->path();
+		return sprintf(
+			'%s/%s',
+			$this->snapshots->getPathname(),
+			$this->origin->path()
+		);
 	}
 }
