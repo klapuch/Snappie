@@ -23,29 +23,10 @@ trait Assertions {
 	}
 
 	public function assertJson($json) {
-		$this->assert(new Json($json));
+		(new SuitedSnapshot($this->location, $this, $this->method))->compare($json);
 	}
 
 	public function assertXml($xml) {
-		$this->assert(new Xml($xml));
-	}
-
-	private function assert(Format $format) {
-		(new FirstSnapshot(
-			new TesterSnapshot(
-				new FullFilename(
-					new FilenameWithExtension(
-						new IncrementalFilename(
-							new CustomFilename($this, $this->method),
-							$this,
-							$this->method
-						),
-						$format
-					),
-					$this->location
-				)
-			),
-			$this->location
-		))->compare($format);
+		(new SuitedSnapshot($this->location, $this, $this->method))->compare($xml);
 	}
 }
