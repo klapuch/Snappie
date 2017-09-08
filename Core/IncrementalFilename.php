@@ -6,16 +6,16 @@ use Tester;
 final class IncrementalFilename implements Filename {
 	private static $calls = [];
 	private $origin;
-	private $class;
+	private $test;
 	private $method;
 
 	public function __construct(
 		Filename $origin,
-		Tester\TestCase $class,
+		Tester\TestCase $test,
 		$method
 	) {
 		$this->origin = $origin;
-		$this->class = $class;
+		$this->test = $test;
 		$this->method = $method;
 	}
 
@@ -23,7 +23,7 @@ final class IncrementalFilename implements Filename {
 		return sprintf(
 			'%s_%02d',
 			$this->origin->path(),
-			$this->increment(spl_object_hash($this->class) . $this->method)
+			$this->increment(spl_object_hash($this->test) . $this->method)
 		);
 	}
 
