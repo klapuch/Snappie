@@ -20,17 +20,11 @@ final class IncrementalFilename implements Filename {
 	}
 
 	public function path() {
-		$annotations = Tester\Helpers::parseDocComment(
-			(new \ReflectionMethod($this->class, $this->method))->getDocComment()
+		return sprintf(
+			'%s_%02d',
+			$this->origin->path(),
+			$this->increment(spl_object_hash($this->class) . $this->method)
 		);
-		if (isset($annotations['dataprovider'])) {
-			return sprintf(
-				'%s_%02d',
-				$this->origin->path(),
-				$this->increment(spl_object_hash($this->class) . $this->method)
-			);
-		}
-		return $this->origin->path();
 	}
 
 	private function increment($key) {
