@@ -23,10 +23,18 @@ trait Assertions {
 	}
 
 	public function assertJson($json) {
-		(new SuitedSnapshot($this->location, $this, $this->method))->compare($json);
+		(new SuitedSnapshot(
+			$this->location,
+			$this,
+			$this->method
+		))->compare(new Json($json));
 	}
 
 	public function assertXml($xml) {
-		(new SuitedSnapshot($this->location, $this, $this->method))->compare($xml);
+		(new SuitedSnapshot(
+			$this->location,
+			$this,
+			$this->method
+		))->compare(new Xml($xml));
 	}
 }
