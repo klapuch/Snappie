@@ -12,8 +12,8 @@ require __DIR__ . '/../bootstrap.php';
 
 class FilenameByClass extends Tester\TestCase {
 	public function testClassAsFilename() {
-		Assert::same(
-			'FilenameByClass/something.txt',
+		Assert::equal(
+			new \SplFileInfo('FilenameByClass/something.txt'),
 			(new Snappie\FilenameByClass(
 				new Snappie\FakeFilename('something.txt'),
 				$this

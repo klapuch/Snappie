@@ -4,16 +4,16 @@ namespace Klapuch\Snappie;
 use Tester;
 
 final class SuitedSnapshot implements Snapshot {
-	private $location;
+	private $root;
 	private $test;
 	private $method;
 
 	public function __construct(
-		\SplFileInfo $location,
+		\SplFileInfo $root,
 		Tester\TestCase $test,
 		$method
 	) {
-		$this->location = $location;
+		$this->root = $root;
 		$this->test = $test;
 		$this->method = $method;
 	}
@@ -33,7 +33,7 @@ final class SuitedSnapshot implements Snapshot {
 						),
 						$this->test
 					),
-					$this->location
+					$this->root
 				)
 			),
 			new FullFilename(
@@ -41,7 +41,7 @@ final class SuitedSnapshot implements Snapshot {
 					new CustomFilename(''),
 					$this->test
 				),
-				$this->location
+				$this->root
 			)
 		))->compare($format);
 	}

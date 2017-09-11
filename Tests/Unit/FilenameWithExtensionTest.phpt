@@ -12,8 +12,8 @@ require __DIR__ . '/../bootstrap.php';
 
 class FilenameWithExtensionTest extends Tester\TestCase {
 	public function testAppendingExtension() {
-		Assert::same(
-			'filename.xml',
+		Assert::equal(
+			new \SplFileInfo('filename.xml'),
 			(new Snappie\FilenameWithExtension(
 				new Snappie\FakeFilename('filename'),
 				new Snappie\FakeFormat('xml')
@@ -22,8 +22,8 @@ class FilenameWithExtensionTest extends Tester\TestCase {
 	}
 
 	public function testRemovingLeadingDot() {
-		Assert::same(
-			'filename.xml',
+		Assert::equal(
+			new \SplFileInfo('filename.xml'),
 			(new Snappie\FilenameWithExtension(
 				new Snappie\FakeFilename('filename'),
 				new Snappie\FakeFormat('.xml')

@@ -11,10 +11,12 @@ final class FilenameWithExtension implements Filename {
 	}
 
 	public function path() {
-		return sprintf(
-			'%s.%s',
-			$this->origin->path(),
-			trim($this->format->extension(), '.')
+		return new \SplFileInfo(
+			sprintf(
+				'%s.%s',
+				$this->origin->path(),
+				trim($this->format->extension(), '.')
+			)
 		);
 	}
 }

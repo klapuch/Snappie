@@ -9,6 +9,6 @@ final class CustomFilename implements Filename {
 	}
 
 	public function path() {
-		return $this->method;
+		return new \SplFileInfo($this->method);
 	}
 }

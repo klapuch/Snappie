@@ -14,6 +14,8 @@ final class FilenameByClass implements Filename {
 
 	public function path() {
 		$parts = explode('\\', (new \ReflectionClass($this->test))->getName());
-		return sprintf('%s/%s', end($parts), $this->origin->path());
+		return new \SplFileInfo(
+			sprintf('%s/%s', end($parts), $this->origin->path())
+		);
 	}
 }

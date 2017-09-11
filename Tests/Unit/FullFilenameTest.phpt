@@ -12,8 +12,8 @@ require __DIR__ . '/../bootstrap.php';
 
 class FullFilenameTest extends Tester\TestCase {
 	public function testConcatenatingFilenameWithFullPath() {
-		Assert::same(
-			'/tmp/filename.xml',
+		Assert::equal(
+			new \SplFileInfo('/tmp/filename.xml'),
 			(new Snappie\FullFilename(
 				new Snappie\FakeFilename('filename.xml'),
 				new \SplFileInfo('/tmp')
@@ -22,8 +22,8 @@ class FullFilenameTest extends Tester\TestCase {
 	}
 
 	public function testStrippingTrailingSlashes() {
-		Assert::same(
-			'/tmp/filename.xml',
+		Assert::equal(
+			new \SplFileInfo('/tmp/filename.xml'),
 			(new Snappie\FullFilename(
 				new Snappie\FakeFilename('filename.xml'),
 				new \SplFileInfo('/tmp//')

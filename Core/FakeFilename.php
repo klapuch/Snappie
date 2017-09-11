@@ -9,6 +9,6 @@ final class FakeFilename implements Filename {
 	}
 
 	public function path() {
-		return $this->path;
+		return new \SplFileInfo($this->path);
 	}
 }

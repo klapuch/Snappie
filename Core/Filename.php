@@ -5,7 +5,7 @@ interface Filename {
 	/**
 	 * Path to the filename
 	 * @see https://en.wikipedia.org/wiki/Filename for allowed formats
-	 * @return string
+	 * @return \SplFileInfo
 	 */
 	public function path();
 }

@@ -3,12 +3,12 @@ namespace Klapuch\Snappie;
 
 trait Assertions {
 	private $method;
-	private $location;
+	private $root;
 	private static $directory = '__snapshots__';
 
 	public function setUp() {
 		parent::setUp();
-		$this->location = new \SplFileInfo(
+		$this->root = new \SplFileInfo(
 			(new \SplFileInfo(
 				(new \ReflectionClass($this))->getFileName()
 			))->getPath()
@@ -24,7 +24,7 @@ trait Assertions {
 
 	public function assertJson($json) {
 		(new SuitedSnapshot(
-			$this->location,
+			$this->root,
 			$this,
 			$this->method
 		))->compare(new Json($json));
@@ -32,7 +32,7 @@ trait Assertions {
 
 	public function assertXml($xml) {
 		(new SuitedSnapshot(
-			$this->location,
+			$this->root,
 			$this,
 			$this->method
 		))->compare(new Xml($xml));

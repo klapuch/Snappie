@@ -11,10 +11,12 @@ final class FullFilename implements Filename {
 	}
 
 	public function path() {
-		return sprintf(
-			'%s/%s',
-			$this->snapshots->getPathname(),
-			$this->origin->path()
+		return new \SplFileInfo(
+			sprintf(
+				'%s/%s',
+				$this->snapshots->getPathname(),
+				$this->origin->path()
+			)
 		);
 	}
 }

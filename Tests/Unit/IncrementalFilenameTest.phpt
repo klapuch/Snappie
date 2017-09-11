@@ -17,8 +17,8 @@ class IncrementalFilenameTest extends Tester\TestCase {
 			$this,
 			'testSomething'
 		);
-		Assert::same('test_01', $filename->path());
-		Assert::same('test_02', $filename->path());
+		Assert::equal(new \SplFileInfo('test_01'), $filename->path());
+		Assert::equal(new \SplFileInfo('test_02'), $filename->path());
 	}
 }
 (new IncrementalFilenameTest)->run();

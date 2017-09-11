@@ -12,8 +12,8 @@ require __DIR__ . '/../bootstrap.php';
 
 class CustomFilenameTest extends Tester\TestCase {
 	public function testPassedAsItIs() {
-		Assert::same(
-			'someMethod',
+		Assert::equal(
+			new \SplFileInfo('someMethod'),
 			(new Snappie\CustomFilename('someMethod'))->path()
 		);
 	}

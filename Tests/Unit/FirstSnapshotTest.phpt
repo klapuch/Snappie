@@ -20,6 +20,10 @@ class FirstSnapshotTest extends Tester\TestCase {
 		parent::setUp();
 		$this->snapshots = new \SplFileInfo(__DIR__ . '/../Temporary/__snapshots__');
 		Tester\Environment::lock('fs', __DIR__ . '/../Temporary');
+	}
+
+	protected function tearDown() {
+		parent::tearDown();
 		Tester\Helpers::purge($this->snapshots->getPathname());
 		@rmdir($this->snapshots->getPathname());
 	}

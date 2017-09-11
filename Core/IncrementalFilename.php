@@ -20,10 +20,12 @@ final class IncrementalFilename implements Filename {
 	}
 
 	public function path() {
-		return sprintf(
-			'%s_%02d',
-			$this->origin->path(),
-			$this->increment(spl_object_hash($this->test) . $this->method)
+		return new \SplFileInfo(
+			sprintf(
+				'%s_%02d',
+				$this->origin->path(),
+				$this->increment(spl_object_hash($this->test) . $this->method)
+			)
 		);
 	}
 
