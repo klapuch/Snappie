@@ -22,18 +22,27 @@ final class SuitedSnapshot implements Snapshot {
 		(new FirstSnapshot(
 			new TesterSnapshot(
 				new FullFilename(
-					new FilenameWithExtension(
-						new IncrementalFilename(
-							new CustomFilename($this->test, $this->method),
-							$this->test,
-							$this->method
+					new FilenameByClass(
+						new FilenameWithExtension(
+							new IncrementalFilename(
+								new CustomFilename($this->method),
+								$this->test,
+								$this->method
+							),
+							$format
 						),
-						$format
+						$this->test
 					),
 					$this->location
 				)
 			),
-			$this->location
+			new FullFilename(
+				new FilenameByClass(
+					new CustomFilename(''),
+					$this->test
+				),
+				$this->location
+			)
 		))->compare($format);
 	}
 }

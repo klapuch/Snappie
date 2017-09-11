@@ -1,26 +1,14 @@
 <?php
 namespace Klapuch\Snappie;
 
-use Tester;
-
 final class CustomFilename implements Filename {
-	private $test;
 	private $method;
 
-	public function __construct(Tester\TestCase $test, $method) {
-		$this->test = $test;
+	public function __construct($method) {
 		$this->method = $method;
 	}
 
 	public function path() {
-		return sprintf(
-			'%s__%s',
-			str_replace(
-				['\\'],
-				'_',
-				(new \ReflectionClass($this->test))->getName()
-			),
-			$this->method
-		);
+		return $this->method;
 	}
 }

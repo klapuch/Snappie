@@ -3,17 +3,17 @@ namespace Klapuch\Snappie;
 
 final class FirstSnapshot implements Snapshot {
 	private $origin;
-	private $location;
+	private $filename;
 
-	public function __construct(Snapshot $origin, \SplFileInfo $location) {
+	public function __construct(Snapshot $origin, Filename $filename) {
 		$this->origin = $origin;
-		$this->location = $location;
+		$this->filename = $filename;
 	}
 
 	public function compare(Format $format) {
-		@mkdir($this->location->getPathname()); // @ - directory may exists
+		@mkdir($this->filename->path(), 0777, true); // @ - directory may exists
 		$this->origin->compare($format);
-		if (!current(glob(sprintf('%s/*', $this->location->getPathname()))))
-			@rmdir($this->location->getPathname()); // @ - directory may not exists
+		if (!current(glob(sprintf('%s/*', $this->filename->path()))))
+			@rmdir($this->filename->path()); // @ - directory may not exists
 	}
 }

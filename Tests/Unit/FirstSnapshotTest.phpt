@@ -30,7 +30,7 @@ class FirstSnapshotTest extends Tester\TestCase {
 			new Snappie\FakeSnapshot(
 				new \SplFileInfo($this->snapshots->getPathname() . '/test.txt')
 			),
-			$this->snapshots
+			new Snappie\FakeFilename($this->snapshots->getPathname())
 		))->compare(new Snappie\FakeFormat('abc'));
 		Assert::true($this->snapshots->isDir());
 	}
@@ -39,7 +39,7 @@ class FirstSnapshotTest extends Tester\TestCase {
 		Assert::false($this->snapshots->isDir());
 		(new Snappie\FirstSnapshot(
 			new Snappie\FakeSnapshot(),
-			$this->snapshots
+			new Snappie\FakeFilename($this->snapshots->getPathname())
 		))->compare(new Snappie\FakeFormat());
 		Assert::false($this->snapshots->isDir());
 	}
@@ -49,13 +49,13 @@ class FirstSnapshotTest extends Tester\TestCase {
 			new Snappie\FakeSnapshot(
 				new \SplFileInfo($this->snapshots->getPathname() . '/test.txt')
 			),
-			$this->snapshots
+			new Snappie\FakeFilename($this->snapshots->getPathname())
 		))->compare(new Snappie\FakeFormat('abc'));
 		(new Snappie\FirstSnapshot(
 			new Snappie\FakeSnapshot(
 				new \SplFileInfo($this->snapshots->getPathname() . '/test2.txt')
 			),
-			$this->snapshots
+			new Snappie\FakeFilename($this->snapshots->getPathname())
 		))->compare(new Snappie\FakeFormat('def'));
 		Assert::count(
 			2,
