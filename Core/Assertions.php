@@ -37,4 +37,12 @@ trait Assertions {
 			$this->method
 		))->compare(new Xml($xml));
 	}
+
+	public function assertPlain($text, $extension) {
+		(new SuitedSnapshot(
+			$this->root,
+			$this,
+			$this->method
+		))->compare(new Plain($text, $extension));
+	}
 }
