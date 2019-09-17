@@ -17,7 +17,7 @@ trait Assertions {
 		);
 	}
 
-	public function runTest($method, array $args = null) {
+	public function runTest(string $method, array $args = null): void {
 		$this->method = $method;
 		parent::runTest($method, $args);
 	}
