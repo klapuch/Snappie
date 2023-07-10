@@ -7,15 +7,18 @@ final class SuitedSnapshot implements Snapshot {
 	private $root;
 	private $test;
 	private $method;
+	private $prefix;
 
 	public function __construct(
 		\SplFileInfo $root,
 		Tester\TestCase $test,
-		$method
+		$method,
+		$prefix = ''
 	) {
 		$this->root = $root;
 		$this->test = $test;
 		$this->method = $method;
+		$this->prefix = $prefix;
 	}
 
 	public function compare(Format $format) {
@@ -25,9 +28,9 @@ final class SuitedSnapshot implements Snapshot {
 					new FilenameByClass(
 						new FilenameWithExtension(
 							new IncrementalFilename(
-								new CustomFilename($this->method),
+								new CustomFilename($this->prefix . $this->method),
 								$this->test,
-								$this->method
+								$this->prefix . $this->method
 							),
 							$format
 						),

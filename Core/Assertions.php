@@ -22,27 +22,30 @@ trait Assertions {
 		parent::runTest($method, $args);
 	}
 
-	public function assertJson($json) {
+	public function assertJson($json, $prefix = '') {
 		(new SuitedSnapshot(
 			$this->root,
 			$this,
-			$this->method
+			$this->method,
+			$prefix
 		))->compare(new Json($json));
 	}
 
-	public function assertXml($xml) {
+	public function assertXml($xml, $prefix = '') {
 		(new SuitedSnapshot(
 			$this->root,
 			$this,
-			$this->method
+			$this->method,
+			$prefix
 		))->compare(new Xml($xml));
 	}
 
-	public function assertPlain($text, $extension) {
+	public function assertPlain($text, $extension, $prefix = '') {
 		(new SuitedSnapshot(
 			$this->root,
 			$this,
-			$this->method
+			$this->method,
+			$prefix
 		))->compare(new Plain($text, $extension));
 	}
 }
