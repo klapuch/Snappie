@@ -13,7 +13,7 @@ final class TesterSnapshot implements Snapshot {
 	public function compare(Format $format) {
 		$this->assert(
 			new \SplFileInfo($this->filename->path()),
-			$format->serialization()
+			rtrim($format->serialization(), PHP_EOL) . PHP_EOL
 		);
 	}
 
