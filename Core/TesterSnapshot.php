@@ -22,7 +22,8 @@ final class TesterSnapshot implements Snapshot {
 			file_put_contents($actual->getPathname(), $expected);
 		Tester\Assert::same(
 			file_get_contents($actual->getPathname()),
-			$expected
+			$expected,
+			$actual->getPathname()
 		);
 	}
 }
