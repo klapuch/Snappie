@@ -4,7 +4,7 @@ namespace Klapuch\Snappie;
 trait Assertions {
 	private $method;
 	private $root;
-	private static $directory = '__snapshots__';
+	private static $directory = 'snapshots';
 
 	public function setUp() {
 		parent::setUp();
